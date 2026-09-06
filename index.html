@@ -21,7 +21,6 @@
             color: #4a3b32;
         }
 
-        /* Анимированный бэкграунд с сердечками */
         #heartsCanvas {
             position: absolute;
             top: 0;
@@ -32,7 +31,6 @@
             pointer-events: none;
         }
 
-        /* Контейнер для секций */
         .story-container {
             position: relative;
             width: 100%;
@@ -40,7 +38,6 @@
             z-index: 2;
         }
 
-        /* Общие стили для экранов */
         .slide {
             position: absolute;
             top: 0;
@@ -67,7 +64,6 @@
             transform: scale(1);
         }
 
-        /* Романтичные рамки в стиле Polaroid */
         .photo-frame {
             background: #ffffff;
             padding: 12px 12px 24px 12px;
@@ -79,7 +75,6 @@
             transition: transform 0.6s ease;
         }
 
-        /* Легкие индивидуальные наклоны рамок, чтобы оживить дизайн */
         #slide1 .photo-frame { transform: rotate(-2deg); }
         #slide2 .photo-frame { transform: rotate(3deg); }
         #slide3 .photo-frame { transform: rotate(-1.5deg); }
@@ -92,7 +87,6 @@
             display: block;
         }
 
-        /* Типографика */
         h1 {
             font-size: 1.8rem;
             font-weight: 600;
@@ -124,7 +118,6 @@
             color: #4a3b32;
         }
 
-        /* Кнопки переходов (стрелочки) */
         .nav-arrow {
             background: none;
             border: none;
@@ -137,7 +130,6 @@
             display: inline-block;
         }
 
-        /* Финальная кнопка перезапуска */
         .restart-btn {
             background-color: #ffffff;
             border: 1px solid #f3d5ca;
@@ -157,14 +149,12 @@
             background-color: #fff5f2;
         }
 
-        /* Анимация покачивания стрелочки */
         @keyframes bounceArrow {
             0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
             40% { transform: translateY(-8px); }
             60% { transform: translateY(-4px); }
         }
 
-        /* Адаптивность для совсем маленьких экранов */
         @media (max-height: 600px) {
             .photo-frame { width: 240px; margin-bottom: 15px; padding-bottom: 15px; }
             .photo-frame img { height: 200px; }
@@ -183,7 +173,7 @@
         <div class="slide active" id="slide1">
             <h1>Für meine Deni ❤️</h1>
             <div class="photo-frame">
-                <img src="photo1.jpg" alt="Moments with Deni">
+                <img src="IMAGE 2026-09-06 15:36:41.jpg" alt="Moments with Deni">
             </div>
             <p>Ich wollte dir etwas Kleines schenken...</p>
             <p>aber eigentlich steckt dahinter etwas viel Größeres. 🥹❤️</p>
@@ -193,7 +183,7 @@
         <!-- Слайд 2 -->
         <div class="slide" id="slide2">
             <div class="photo-frame">
-                <img src="photo2.jpg" alt="Our beautiful memories">
+                <img src="IMAGE 2026-09-06 15:36:45.jpg" alt="Our beautiful memories">
             </div>
             <p>Seit ich dich kennengelernt habe, sind so viele wunderschöne Momente entstanden.</p>
             <p class="highlight-text">Jeder Moment mit dir ist für mich etwas Besonderes. ❤️</p>
@@ -203,7 +193,7 @@
         <!-- Слайд 3 -->
         <div class="slide" id="slide3">
             <div class="photo-frame">
-                <img src="photo3.jpg" alt="Forever together">
+                <img src="IMAGE 2026-09-06 15:36:47.jpg" alt="Forever together">
             </div>
             <h1 style="font-size: 1.5rem;">Deni, mein Bomzik, mein Scooby... 🥹❤️</h1>
             <p>Ich bin einfach glücklich, dass es dich gibt.</p>
@@ -214,20 +204,15 @@
     </div>
 
     <script>
-        // Функция переключения слайдов
         function nextSlide(slideNumber) {
-            // Убираем активный класс у всех
             document.querySelectorAll('.slide').forEach(slide => {
                 slide.classList.remove('active');
             });
-            // Добавляем нужному слайду
             document.getElementById('slide' + slideNumber).classList.add('active');
         }
 
-        // --- Система фоновых анимированных сердечек (Canvas) ---
         const canvas = document.getElementById('heartsCanvas');
         const ctx = canvas.getContext('2d');
-
         let hearts = [];
 
         function resizeCanvas() {
@@ -252,15 +237,12 @@
                 ctx.globalAlpha = this.opacity;
                 ctx.fillStyle = '#d66853';
                 ctx.beginPath();
-                
-                // Рисуем аккуратное векторное сердечко
                 const topCurveHeight = this.size * 0.3;
                 ctx.moveTo(this.x, this.y + topCurveHeight);
                 ctx.bezierCurveTo(this.x, this.y, this.x - this.size / 2, this.y, this.x - this.size / 2, this.y + topCurveHeight);
                 ctx.bezierCurveTo(this.x - this.size / 2, this.y + (this.size + topCurveHeight) / 2, this.x, this.y + (this.size + topCurveHeight) / 2, this.x, this.y + this.size);
                 ctx.bezierCurveTo(this.x, this.y + (this.size + topCurveHeight) / 2, this.x + this.size / 2, this.y + (this.size + topCurveHeight) / 2, this.x + this.size / 2, this.y + topCurveHeight);
                 ctx.bezierCurveTo(this.x + this.size / 2, this.y, this.x, this.y, this.x, this.y + topCurveHeight);
-                
                 ctx.closePath();
                 ctx.fill();
                 ctx.restore();
@@ -276,7 +258,6 @@
             }
         }
 
-        // Создаем фиксированное количество легких сердечек
         function initHearts() {
             hearts = [];
             const count = Math.min(25, Math.floor(canvas.width / 15)); 
